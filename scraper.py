@@ -18,8 +18,10 @@ class Scraper:
         self.URL = "https://www.google.com/imghp?hl=en"
         self.opt = webdriver.ChromeOptions()
         self.opt.add_argument("--no-sandbox")
+        self.opt.add_argument("--headless")
         self.driver = webdriver.Chrome(options=self.opt)
         self.max = max_images
+        self.start = time.time()
         try:
             print("Creating images directory...")
             os.mkdir(DOWNLOAD_DIR_NAME)
@@ -48,6 +50,7 @@ class Scraper:
         search_box = self.driver.find_element(By.ID, "APjFqb")
         search_box.send_keys(self.term)
         search_box.send_keys(Keys.RETURN)
+        print(f"Searching for {self.term} images...")
         os.chdir(DOWNLOAD_DIR_NAME)
         time.sleep(5)
         scroll_count = 0
@@ -83,3 +86,4 @@ class Scraper:
                 print(f"ElementClickInterceptedException on image {image_index+1}/{len(images)}")
                 continue
         self.driver.quit()
+        print(f"Scraping completed in {time.time()-self.start} seconds")
