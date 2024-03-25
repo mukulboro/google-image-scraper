@@ -13,14 +13,14 @@ MAX_SCROLLS = 5 # Magic Number to guarantee you reach the end of the page
 DOWNLOAD_DIR_NAME = "images"
 
 class Scraper:
-    def __init__(self, term, max_images=200, screenshot = False):
+    def __init__(self, term, screenshot = False):
         self.term = term
         self.URL = "https://www.google.com/imghp?hl=en"
         self.opt = webdriver.ChromeOptions()
+        ch 
         self.opt.add_argument("--no-sandbox")
-        self.opt.add_argument("--headless")
+        # self.opt.add_argument("--headless")
         self.driver = webdriver.Chrome(options=self.opt)
-        self.max = max_images
         self.start = time.time()
         self.ss = screenshot
         try:
