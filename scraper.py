@@ -17,9 +17,8 @@ class Scraper:
         self.term = term
         self.URL = "https://www.google.com/imghp?hl=en"
         self.opt = webdriver.ChromeOptions()
-        ch 
         self.opt.add_argument("--no-sandbox")
-        # self.opt.add_argument("--headless")
+        self.opt.add_argument("--headless")
         self.driver = webdriver.Chrome(options=self.opt)
         self.start = time.time()
         self.ss = screenshot
