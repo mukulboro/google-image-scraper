@@ -13,7 +13,7 @@ MAX_SCROLLS = 5 # Magic Number to guarantee you reach the end of the page
 DOWNLOAD_DIR_NAME = "images"
 
 class Scraper:
-    def __init__(self, term, max_images=200):
+    def __init__(self, term, max_images=200, screenshot = False):
         self.term = term
         self.URL = "https://www.google.com/imghp?hl=en"
         self.opt = webdriver.ChromeOptions()
@@ -22,6 +22,7 @@ class Scraper:
         self.driver = webdriver.Chrome(options=self.opt)
         self.max = max_images
         self.start = time.time()
+        self.ss = screenshot
         try:
             print("Creating images directory...")
             os.mkdir(DOWNLOAD_DIR_NAME)
@@ -74,6 +75,10 @@ class Scraper:
                 time.sleep(1)
                 image_element = self.driver.find_element(By.CLASS_NAME, "sFlh5c")
                 image_source = image_element.get_attribute("src")
+                if self.ss:
+                    image.screenshot(f"image{image_index}.png")
+                    print(f"Screenshot taken for image {image_index}")
+                    continue
                 try:
                     self.save_http_image(image_source, image_index)
                 except:    
