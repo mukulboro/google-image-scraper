@@ -2,7 +2,7 @@
 
 ## Description
 
-A Selenium based simple image scraper that scarapes images for any search term from Google Images. This tool can be used to download base64 as well as HTTP images.
+A Selenium based simple image scraper that scrapes images for any search term from Google Images. This tool can be used to download base64 as well as HTTP images.
 
 This tool was developed to create small toy datasets to simplify the process of learning deep learning and image classification.
 
